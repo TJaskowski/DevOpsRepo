@@ -1,0 +1,19 @@
+version: '3'
+services: 
+  react-app: 
+    image: node:16
+    contaioner_name: react-app
+    environment:
+      - NODE_ENV=development
+    work_dir: /app
+    command: npm run dev
+    ports: 
+      - "8080:8080"
+    volumes: 
+      - .:/app
+      - /app/node_modules
+    networks: 
+      - my-network
+networks: 
+  my-network:
+    
