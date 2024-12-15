@@ -1,8 +1,15 @@
 import {useParams} from 'react-router-dom'
-import {data} from '../data/module-data'
 
 function PeoplePage() {
     const{id} = useParams(0);
+    const [data, setData] = useState([]);
+  useEffect(() => {
+    fetch('http://localhost:4000/generate-data?count=100') // adres backendu
+      .then(response => response.json())
+      .then(fetchedData => setData(fetchedData))
+      .catch(error => console.error('Error fetching data:', error));
+  }, []);
+
     const person = data.find(p => p.id === Number(id));
     return ( 
         <>
